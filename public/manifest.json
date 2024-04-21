@@ -21,7 +21,7 @@
     ],
     "theme_color": "#FFFFFF",
     "background_color": "#FFFFFF",
-    "start_url": "/",
+    "start_url": ".",
     "display": "standalone",
     "orientation": "portrait",
     "shortcuts": [
@@ -29,7 +29,7 @@
             "name": "Trip meter",
             "short_name": "Trip meter",
             "description": "",
-            "url": "/",
+            "url": ".",
             "icons": [
                 {
                     "src": "/icons/trip-meter-192x192.png",
