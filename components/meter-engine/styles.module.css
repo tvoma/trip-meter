@@ -7,6 +7,20 @@
 }
 
 .container p {
+    display: flex;
+    align-items: center;
     font-weight: bold;
     font-size: 2rem;
+}
+
+.indicator {
+    margin-right: 1rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    @apply bg-red-900
+}
+
+.indicator.started {
+    @apply bg-emerald-600
 }

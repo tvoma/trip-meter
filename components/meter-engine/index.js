@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import distance from 'gps-distance'
-import { getRealTimePosition } from './getter'
+import { getRealTimePosition, getDistance, getIndicatorClassNames } from './getter'
+import { DEFAULT_DISTANCE, DEFAULT_NBR_RECORDS } from './constant'
 import styles from './styles.module.css'
 
 function MeterEngine() {
@@ -10,29 +10,38 @@ function MeterEngine() {
 
     const [started, setStart] = useState(false)
     const [positionRecords, setPositionRecords] = useState([])
-    const [distanceTraveled, setDistanceTraveled] = useState(0)
+    const [distanceTraveled, setDistanceTraveled] = useState(DEFAULT_DISTANCE)
 
     const toggleEngine = () => setStart(!started)
 
+    const reset = watchPositionId => {
+        setPositionRecords([])
+        setDistanceTraveled(DEFAULT_DISTANCE)
+        navigator.geolocation.clearWatch(watchPositionId)
+    }
+
     useEffect(() => {
-        if (started) getRealTimePosition(setPositionRecords)
+        let watchId
+
+        if (started)
+            watchId = getRealTimePosition(setPositionRecords)
         
-        if (!started) {
-            setPositionRecords([])
-            setDistanceTraveled(0)
-        }
+        if (!started)
+            reset(watchId)
+
+        return () => reset(watchId)
     }, [started])
 
     useEffect(() => {
-        if (positionRecords.length > 2) {
-            const calculatedDistance = distance(positionRecords)
-            setDistanceTraveled(calculatedDistance)
-        }
+        if (positionRecords.length > DEFAULT_NBR_RECORDS)
+            getDistance(positionRecords, setDistanceTraveled)
     }, [positionRecords])
 
     return (
         <div ref={ containerRef } className={ styles.container } onClick={ toggleEngine }>
-            <p>{ distanceTraveled } km</p>
+            <p>
+                <span className={ getIndicatorClassNames(started) }></span> { distanceTraveled } km
+            </p>
         </div>
     )
 }
