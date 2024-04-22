@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { getRealTimePosition, getDistance, getIndicatorClassNames } from './getter'
-import { DEFAULT_DISTANCE, DEFAULT_NBR_RECORDS } from './constant'
+import { DEFAULT_DISTANCE, MIN_NBR_RECORDS } from './constant'
 import styles from './styles.module.css'
 
 function MeterEngine() {
@@ -33,7 +33,7 @@ function MeterEngine() {
     }, [started])
 
     useEffect(() => {
-        if (positionRecords.length > DEFAULT_NBR_RECORDS)
+        if (positionRecords.length > MIN_NBR_RECORDS)
             getDistance(positionRecords, setDistanceTraveled)
     }, [positionRecords])
 

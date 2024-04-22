@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 
 const getRealTimePosition = setPositionRecords => {
     const geo = navigator.geolocation
-    const options = { enableHighAccuracy: true }
+    const options = { enableHighAccuracy: true, maximumAge: 0 }
 
     const onPositionSuccess = position => {
         const coordinates = [position.coords.latitude, position.coords.longitude]
