@@ -1,0 +1,30 @@
+.container p {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+}
+
+.distance {
+    font-size: 3rem;
+}
+
+.indicator {
+    align-items: center;
+    @apply text-red-900
+}
+
+.indicator.recording {
+    @apply text-emerald-600
+}
+
+.indicator span {
+    margin-right: 1rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    @apply bg-red-900
+}
+
+.indicator.recording span {
+    @apply bg-emerald-600
+}

@@ -1,5 +1,15 @@
-import MeterEngine from '@/components/meter-engine'
+'use client'
+
+import Distance from '@/components/distance'
+import Wrapper from '@/components/wrapper'
+import useMeter from '@/hooks/use-meter'
 
 export default function Home() {
-    return <MeterEngine />
+    const { meterRef, recording, distanceTraveled } = useMeter()
+
+    return (
+        <Wrapper ref={ meterRef }>
+            <Distance recording={ recording } distanceTraveled={ distanceTraveled } />
+        </Wrapper>
+    )
 }
