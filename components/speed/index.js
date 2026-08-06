@@ -8,7 +8,7 @@ export default function Speed({ position }) {
         <div className={ styles.container }>
             <p className={ styles.speed }>
                 <PiSpeedometerBold />
-                <span>{ speedInKm } hm/h</span>
+                <span>{ speedInKm } km/h</span>
             </p>
         </div>
     )
