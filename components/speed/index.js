@@ -1,9 +1,15 @@
+import { PiSpeedometerBold } from 'react-icons/pi'
 import styles from './styles.module.css'
 
 export default function Speed({ position }) {
+    const speedInKm = (position.speed * 3.6).toFixed(0)
+    
     return (
         <div className={ styles.container }>
-            <p className={ styles.speed }>Speed : { position.speed } m/s</p>
+            <p className={ styles.speed }>
+                <PiSpeedometerBold />
+                <span>{ speedInKm } hm/h</span>
+            </p>
         </div>
     )
 }

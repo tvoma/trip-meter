@@ -1,0 +1,8 @@
+.speed {
+    display: flex;
+    align-items: center;
+}
+
+.speed span {
+    margin-left: 0.5rem;
+}

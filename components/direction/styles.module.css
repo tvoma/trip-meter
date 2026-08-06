@@ -1,0 +1,8 @@
+.direction {
+    display: flex;
+    align-items: center;
+}
+
+.direction span {
+    margin-left: 0.5rem;
+}

@@ -1,7 +1,15 @@
-export default function useSettings() {
-    const [displayElevation, setDisplayElevation] = useState(false)
-    const [displaySpeed, setDisplaySpeed] = useState(false)
-    const setters = { setDisplayElevation, setDisplaySpeed }
+import { useState } from 'react'
 
-    return { displayElevation, displaySpeed, setters }
+export default function useSettings() {
+    const [settings, setSettings] = useState({
+        elevation: false,
+        direction: false,
+        speed: false,
+    })
+      
+    const handleSettingChange = (key, value) => {
+        setSettings((prev) => ({ ...prev, [key]: value }));
+    }
+
+    return { settings, handleSettingChange }
 }

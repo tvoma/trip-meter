@@ -1,0 +1,8 @@
+.elevation {
+    display: flex;
+    align-items: center;
+}
+
+.elevation span {
+    margin-left: 0.5rem;
+}
