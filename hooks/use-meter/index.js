@@ -1,22 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { DEFAULT_DISTANCE, MIN_NBR_RECORDS } from './constant'
-import { getDistance, getRealTimePosition } from './getter'
+import { getDistance } from './getter'
 
-export default function useMeter() {
+export default function useMeter(position) {
     const meterRef = useRef()
     const [recording, setRecording] = useState(false)
     const [positionRecords, setPositionRecords] = useState([])
     const [distanceTraveled, setDistanceTraveled] = useState(DEFAULT_DISTANCE)
 
-    const toggleRecording = useCallback(() => {
-        console.log('recording', recording)
-        setRecording(!recording)
-    }, [recording])
+    const toggleRecording = useCallback(() => setRecording(!recording), [recording])
 
-    const reset = watchPositionId => {
+    const resetBeforeRecording = () => {
         setPositionRecords([])
         setDistanceTraveled(DEFAULT_DISTANCE)
-        navigator.geolocation.clearWatch(watchPositionId)
     }
 
     useEffect(() => {
@@ -34,15 +30,13 @@ export default function useMeter() {
     }, [meterRef, recording, toggleRecording])
 
     useEffect(() => {
-        let watchId
+        if (!recording) return
+        setPositionRecords(current => [...current, position.coordinates])
+    }, [position, recording])
 
+    useEffect(() => {
         if (recording)
-            watchId = getRealTimePosition(setPositionRecords)
-        
-        if (!recording)
-            reset(watchId)
-
-        return () => reset(watchId)
+            resetBeforeRecording()
     }, [recording])
 
     useEffect(() => {

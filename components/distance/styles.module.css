@@ -5,16 +5,17 @@
 }
 
 .distance {
+    margin-top: 0;
     font-size: 3rem;
 }
 
 .indicator {
     align-items: center;
-    @apply text-red-900
+    color: var(--c-red);
 }
 
 .indicator.recording {
-    @apply text-emerald-600
+    color: var(--c-emerald-light);
 }
 
 .indicator span {
@@ -22,9 +23,9 @@
     width: 1rem;
     height: 1rem;
     border-radius: 1rem;
-    @apply bg-red-900
+    background-color: var(--c-red);
 }
 
 .indicator.recording span {
-    @apply bg-emerald-600
+    background-color: var(--c-emerald-light);
 }
