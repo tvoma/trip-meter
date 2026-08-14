@@ -1,5 +1,6 @@
 {
     "name": "Trip meter",
+    "apple-touch-icon": "/icons/trip-meter-192x192.png",
     "short_name": "Trip meter",
     "icons": [
         {
